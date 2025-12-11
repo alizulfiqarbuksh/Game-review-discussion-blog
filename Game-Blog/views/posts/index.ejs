@@ -6,8 +6,12 @@
   <title>Document</title>
 </head>
 <body>
-  <%- include('./partials/_navbar.ejs') %>
-  <h1>Landing Page</h1>
-  <a href="/posts">continue without log-in</a>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Posts Here</h1>
+
+  <% if (user) { %>
+    <a href="/posts/new">Create a post</a>
+  <% } %>
+
 </body>
 </html>

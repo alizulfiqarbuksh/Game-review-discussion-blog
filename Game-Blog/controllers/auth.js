@@ -49,7 +49,7 @@ router.post('/sign-up', async (req, res) => {
     };
 
     req.session.save(() => {
-      res.redirect('/');
+      res.redirect('/posts');
     });
   } catch (error) {
     console.error(error);
@@ -87,7 +87,7 @@ router.post('/sign-in', async (req, res) => {
     };
 
     req.session.save(() => {
-      res.redirect('/');
+      res.redirect('/posts');
     });
   } catch (error) {
     console.error(error);
