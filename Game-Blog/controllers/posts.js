@@ -74,6 +74,34 @@ router.delete('/:id', async (req, res) => {
 
 });
 
+router.get('/:id/edit', async (req, res) => {
 
+  try{
+    const currentPost = await Post.findById(req.params.id).populate('author');
+    const dateTime = currentPost.createdAt.toISOString().slice(0, 16);
+    res.render('posts/edit.ejs', {currentPost, dateTime});
+  }
+  catch(err) {
+    res.redirect('/');
+  }
+
+});
+
+router.put('/:id', async (req, res) => {
+
+  try {
+    const currentPost = await Post.findById(req.params.id);
+    const isAuthor = currentPost.author.equals(req.session.user._id);
+    
+    if(isAuthor) {
+      await currentPost.updateOne(req.body);
+      res.redirect('/posts');
+    }
+  } 
+  catch (err) {
+    res.redirect('/');
+  }
+
+});
 
 module.exports = router;
