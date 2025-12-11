@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1><%= currentPost.title %></h1>
+  <p><%= currentPost.body %></p>
+  <p>Posted on: <%= formattedDate %> by <%= currentPost.author.username %></p>
+
+  <% if (user && currentPost.author._id.toString() === user._id.toString()) { %>
+    <form action="/posts/<%= currentPost._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Post</button>
+    </form>
+  <% } %>
+
+</body>
+</html>

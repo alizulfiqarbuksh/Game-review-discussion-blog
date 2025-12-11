@@ -13,5 +13,9 @@
     <a href="/posts/new">Create a post</a>
   <% } %>
 
+  <% allPosts.forEach((post) => { %>
+    <h3><a href="/posts/<%= post._id %>"><%= post.title %> </a> by <%= post.author.username %></h3>
+  <% }) %>
+
 </body>
 </html>
