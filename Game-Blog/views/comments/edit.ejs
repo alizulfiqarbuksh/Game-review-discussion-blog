@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit comment</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Edit Comment</h1>
+
+<form action="/posts/<%= currentPost._id %>/comments/<%= currentComment._id %>?_method=PUT" method="POST">
+  
+  <input type="hidden" name="commenter" value="<%= user._id %>">
+      
+  <label for="text">Comment: </label>
+  <textarea name="text" id="text" placeholder="Leave a comment ....." required><%= currentComment.text %></textarea>
+
+  <input type="hidden" name="createdAt" id="createdAt" value="<%= dateTime %>">
+
+  <button type="submit">Update comment</button>
+
+</form>
+
+<a href="/posts/<%= currentPost._id %>">Cancel</a>
+
+</body>
+</html>

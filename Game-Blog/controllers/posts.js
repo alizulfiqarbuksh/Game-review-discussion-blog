@@ -153,7 +153,30 @@ router.delete('/:id/comments/:commentId', async (req, res) => {
 router.get('/:id/comments/:commentId/edit', async (req, res) => {
   
   try{
-    res.render('comments/edit.ejs');
+    const currentPost = await Post.findById(req.params.id).populate('comments.commenter');
+    const currentComment = await currentPost.comments.id(req.params.commentId);
+    const dateTime = new Date().toISOString().slice(0, 16);
+
+    res.render('comments/edit.ejs', {currentPost, currentComment, dateTime});
+  }
+  catch(err) {
+    res.redirect('/');
+  }
+
+});
+
+router.put('/:id/comments/:commentId', async (req, res) => {
+  
+  try{
+    const currentPost = await Post.findById(req.params.id);
+    const currentComment = currentPost.comments.id(req.params.commentId);
+
+    if(currentComment.commenter.equals(req.session.user._id)) {
+      await currentComment.set(req.body);
+      currentPost.save();
+    }
+
+    res.redirect(`/posts/${currentPost._id}`);
   }
   catch(err) {
     res.redirect('/');
