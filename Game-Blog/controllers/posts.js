@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
 const { route } = require('./auth');
+const upload = require('../config/multer');
 
 router.get('/', async (req, res) => {
 
@@ -28,12 +29,20 @@ router.get('/new', async (req, res) => {
   
 });
 
-router.post('/', async (req, res) => {
+router.post('/', upload.array('images', 5), async (req, res) => {
 
   try{
     if(req.session.user) {
 
-      await Post.create(req.body);
+      const imagePaths = req.files.map(file => `/uploads/${file.filename}`);
+
+      await Post.create({
+          title: req.body.title,
+          body: req.body.body,
+          createdAt: req.body.createdAt,
+          author: req.session.user._id,
+          images: imagePaths,
+      });
       res.redirect('/posts');
 
     }
@@ -92,16 +101,25 @@ router.get('/:id/edit', async (req, res) => {
 
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', upload.array('images', 5), async (req, res) => {
 
   try {
     const currentPost = await Post.findById(req.params.id);
     const isAuthor = currentPost.author.equals(req.session.user._id);
     
     if(isAuthor) {
-      await currentPost.updateOne(req.body);
-      res.redirect('/posts');
+      currentPost.title = req.body.title;
+      currentPost.body = req.body.body;
+      currentPost.createdAt = req.body.createdAt;
+
+      if (req.files && req.files.length > 0) {
+        const newImages = req.files.map(file => `/uploads/${file.filename}`);
+        currentPost.images.push(...newImages);
+      }
+      await currentPost.save();
+      res.redirect('/posts/' + currentPost._id);
     }
+    
   } 
   catch (err) {
     res.redirect('/');

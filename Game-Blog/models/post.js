@@ -34,6 +34,10 @@ const PostSchema = mongoose.Schema({
     required: true,
   },
 
+  images: [{
+    type: String,
+  }],
+
   comments: [CommentSchema],
 
   createdAt: {

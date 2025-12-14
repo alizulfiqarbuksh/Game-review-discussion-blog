@@ -9,6 +9,15 @@
   <%- include('../partials/_navbar.ejs') %>
 
   <h1><%= currentPost.title %></h1>
+  <% if (currentPost.images && currentPost.images.length) { %>
+
+    <div class="post-images">
+      <% currentPost.images.forEach(img => { %>
+        <img src="<%= img %>" alt="Post image" />
+      <% }) %>
+    </div>
+
+  <% } %>
   <p><%= currentPost.body %></p>
   <p>Posted on: <%= formattedDate %> by <%= currentPost.author.username %></p>
 
@@ -39,14 +48,14 @@
   <% } %>
 
   <% currentPost.comments.forEach((comment) => { %>
-    <p><%= comment.commenter.username %> says: <%= comment.text %></p>
+    <p><%= comment.commenter ? comment.commenter.username : 'Unknown' %> says: <%= comment.text %></p>
 
-    <% if(comment.commenter._id.equals(user._id) || currentPost.author._id.equals(user._id)) { %>
+    <% if (user && comment.commenter && comment.commenter._id.equals(user._id) || user && currentPost.author._id.equals(user._id)) { %>
       <form action="/posts/<%= currentPost._id %>/comments/<%= comment._id %>/?_method=DELETE" method="POST">
         <button type="submit">Delete comment</button>
       </form>
       
-      <% if(comment.commenter._id.equals(user._id)) { %>
+      <% if(comment.commenter && comment.commenter._id.equals(user._id)) { %>
         <a href="/posts/<%= currentPost._id %>/comments/<%= comment._id %>/edit">
           <button>Update comment</button>
         </a>
