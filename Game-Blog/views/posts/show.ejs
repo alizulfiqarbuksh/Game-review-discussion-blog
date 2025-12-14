@@ -21,6 +21,21 @@
   <p><%= currentPost.body %></p>
   <p>Posted on: <%= formattedDate %> by <%= currentPost.author.username %></p>
 
+  <h2>Likes</h2>
+  <p>Liked by <%= currentPost.favoritedByUsers.length %> people.</p>
+
+  <% if(user && !userHasFavorited) { %>
+    <form action="/posts/<%= currentPost._id %>/favorited-by/<%= user._id %>" method="POST">
+      <button type="submit">Like post!</button>
+    </form>
+  <% }%>
+
+  <% if(userHasFavorited) { %>
+    <form action="/posts/<%= currentPost._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+      <button type="submit">Unlike Post</button>
+    </form>
+  <% }%>
+
   <% if (user && currentPost.author._id.toString() === user._id.toString()) { %>
     <form action="/posts/<%= currentPost._id %>?_method=DELETE" method="POST">
       <button type="submit">Delete Post</button>

@@ -62,8 +62,9 @@ router.get('/:id', async (req, res) => {
       dateStyle: 'medium',
       timeStyle: 'short'
     });
+    const userHasFavorited = req.session.user ? currentPost.favoritedByUsers.some(userId => userId.equals(req.session.user._id)) : false;
 
-    res.render('posts/show.ejs', {currentPost, formattedDate, dateTime});
+    res.render('posts/show.ejs', {currentPost, formattedDate, dateTime, userHasFavorited});
   }
   catch(err) {
     res.redirect('/');
@@ -195,6 +196,28 @@ router.put('/:id/comments/:commentId', async (req, res) => {
     }
 
     res.redirect(`/posts/${currentPost._id}`);
+  }
+  catch(err) {
+    res.redirect('/');
+  }
+
+});
+
+router.post('/:id/favorited-by/:userId', async (req, res) => {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {$push: {favoritedByUsers: req.params.userId}});
+    res.redirect(`/posts/${req.params.id}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
+router.delete('/:id/favorited-by/:userId', async (req, res) => {
+
+  try{
+    await Post.findByIdAndUpdate(req.params.id, {$pull: {favoritedByUsers: req.params.userId}});
+    res.redirect(`/posts/${req.params.id}`);
   }
   catch(err) {
     res.redirect('/');

@@ -44,6 +44,13 @@ const PostSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  favoritedByUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 const Post = mongoose.model('Post', PostSchema);
