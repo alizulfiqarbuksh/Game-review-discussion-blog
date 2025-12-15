@@ -38,38 +38,38 @@
 }
 
 .auth-right {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 60%;
 }
 
-.login-form-container {
+.form-container {
   background-color: #0f172a;
   padding: 40px;
   border-radius: 8px;
+  width:400px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   max-width: 400px;
 }
 
-.login-form-container h2 {
+.form-container h2 {
   color: #38bdf8;
   margin-bottom: 24px;
   text-align: center;
 }
 
-.login-form-container form {
+.form-container form {
   display: flex;
   flex-direction: column;
 }
 
-.login-form-container label {
+.form-container label {
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-.login-form-container input {
+.form-container input {
   margin-bottom: 16px;
   padding: 10px;
   border: none;
@@ -77,7 +77,7 @@
   font-size: 14px; 
 }
 
-.login-form-container button {
+.form-container button {
   padding: 12px;
   background-color: #38bdf8;
   color: #020617;
@@ -87,6 +87,6 @@
   cursor: pointer;
 }
 
-.login-form-container button:hover {
+.form-container button:hover {
   background-color: #0ea5e9;
 }

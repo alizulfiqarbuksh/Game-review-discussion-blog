@@ -10,18 +10,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/auth.css">
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Create a new account!</h1>
-    <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" />
-      <button type="submit">Sign up</button>
-    </form>
+
+    <div class="page-content">
+
+      <div class="auth-page">
+
+        <div class="auth-left">
+          <div class="auth-left-content">
+            <h1>Join the Community</h1>
+            <p>Create an account to write reviews, share guides, and join game discussions.</p>
+          </div>
+        </div>
+
+        <div class="auth-right">
+          <div class="form-container">
+            <h2>Create a new account!</h2>
+
+            <form action="/auth/sign-up" method="POST">
+
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username"  placeholder="Enter username"/>
+
+              <label for="password">Password:</label>
+              <input type="password" name="password" id="password" placeholder="Enter password"/>
+
+              <label for="confirmPassword">Confirm Password:</label>
+              <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Re-enter password"/>
+
+              <button type="submit">Sign up</button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </body>
 </html>

@@ -10,18 +10,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/posts.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Posts Here</h1>
 
-  <% if (user) { %>
-    <a href="/posts/new">Create a post</a>
-  <% } %>
+  <div class="page-content">
 
-  <% allPosts.forEach((post) => { %>
-    <h3><a href="/posts/<%= post._id %>"><%= post.title %> </a> by <%= post.author.username %></h3>
-  <% }) %>
+    <div class="banner-img">
+      <div class="banner-container">
+        <h1 class="Welcome-msg">Discover What Gamers Are Talking About</h1>
+        <p class="slogan">Reviews, guides, and discussions written by gamers, for gamers.</p>
+        
+        <% if (user) { %>
+          <button class="posts-btn"></button>
+            <a href="/posts/new">Create a post</a>
+          </button>
+        <% } %>
+        
+      </div>
+    </div>
+
+    <div class="site-info posts-grid">
+
+      <% allPosts.forEach((post) => { %>
+        <div class="info-card">
+          <a href="/posts/<%= post._id %>" class="card-link"></a>
+          <h3 class="post-title">
+            <a href="/posts/<%= post._id %>"><%= post.title %> </a>
+            <p class="post-author">Created by: <%= post.author.username %></p>
+            <p class="post-date">
+              <%= post.createdAt.toLocaleString('en-BH', {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+              }) %>
+            </p>
+          </h3>
+        </div>
+      <% }) %>
+
+    </div>
+
+  </div>
 
 </body>
 </html>
