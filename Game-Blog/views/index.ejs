@@ -4,10 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/landing.css">
 </head>
 <body>
   <%- include('./partials/_navbar.ejs') %>
-  <h1>Landing Page</h1>
-  <a href="/posts">continue without log-in</a>
+
+  <div class="page-content">
+
+    <div class="banner-img">
+      <div class="banner-container">
+        <h1 class="Welcome-msg">Welcome to Games Blog Your Hub for Reviews & Guides</h1>
+        <button class="posts-btn"><a href="/posts">Browse Posts</a></button>
+      </div>
+      
+    </div>
+
+    <div class="site-info">
+      <div class="info-card">
+        <h4>Game Reviews</h4>
+        <p>Honest and detailed reviews from real players. Discover gameplay impressions, story depth, graphics quality, and performance insights before you decide what to play next.</p>
+      </div>
+
+      <div class="info-card">
+        <h4>Guides & Tips</h4>
+        <p>Struggling with a tough level or boss fight? Browse short guides, strategies, and tips shared by the community to help you progress faster and smarter.</p>
+      </div>
+
+      <div class="info-card">
+        <h4>Community Discussions</h4>
+        <p>Every post has its own discussion space. Share opinions, ask questions, and debate game mechanics with other gamers in a friendly and interactive environment.</p>
+      </div>
+
+      <div class="info-card">
+        <h4>Game News</h4>
+        <p>Stay up to date with patch notes, balance changes, DLC releases, and major announcements for the games you care about most.</p>
+      </div>
+
+      <div class="info-card">
+        <h4>Player Opinions</h4>
+        <p>Read different perspectives from casual players, competitive gamers, and completionists. See how others experience the same game in unique ways.</p>
+      </div>
+
+      <div class="info-card">
+        <h4>Share Your Experience</h4>
+        <p>Create your own posts to review games, write mini-guides, or share updates. Contribute to the community and help other players with your knowledge.</p>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>

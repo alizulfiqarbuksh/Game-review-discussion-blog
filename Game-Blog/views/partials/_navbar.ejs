@@ -1,11 +1,27 @@
+<nav class="navbar">
+  <div class="navbar-container">
 
-<nav>
-  <% if (user) { %>
-  <a href="/">Home</a>
-  <!-- <p><%= user.username %></p> -->
-  <a href="/auth/sign-out">Sign Out</a>
-  <% } else { %>
-  <a href="/auth/sign-up">Sign Up</a>
-  <a href="/auth/sign-in">Sign In</a>
-  <% } %>
+    <div class="navbar-brand">
+      <a href="/" class="brand-link">Games Blog</a>
+    </div>
+
+    <div class="navbar-user">
+      <% if (user) { %>
+        <p class="nav-user">Welcome: <%= user.username %></p>
+      <% } %>
+    </div>
+
+    <div class="navbar-links">
+      <% if (user) { %>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/posts" class="nav-link">Posts</a>
+        <a href="/auth/sign-out" class="nav-link nav-link-danger">Sign Out</a>
+      <% } else { %>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/auth/sign-up" class="nav-link">Sign Up</a>
+        <a href="/auth/sign-in" class="nav-link">Sign In</a>
+      <% } %>
+    </div>
+
+  </div>
 </nav>
