@@ -1,89 +1,49 @@
-<h1>
-  <span class="headline">New Project</span>
-  <span class="subhead">Setup</span>
-</h1>
+![Computer with Code](./public/images/Screenshot%202025-12-18%20014918.png)
 
-## Setup
+# Game Review & Discussion Blog
 
-Open your Terminal application and navigate to your projects directory:
+**Games blog** is a gaming-focused blog where users can write reviews, post guides, and share updates or news about the games they play. Each post includes a discussion section where users can leave comments, share opinions, and ask questions. This project creates an interactive hub for gamers to exchange knowledge, connect, and engage with the gaming community.
 
-## Cloning the Auth boilerplate
+# Getting started
 
-This template uses the [`MEN Stack Auth Template`](https://git.generalassemb.ly/modular-curriculum-all-courses/men-stack-session-auth-template) as starter code. Doing so allows us to have a connection established to our MongoDB Atlas, add functioning auth for our user model, and install some of the packages we will need for our app build.
+Explore the live blog here:
+[Game Review & Discussion Blog](https://github.com/alizulfiqarbuksh/Game-review-discussion-blog)
 
-Navigate to the [MEN Stack Auth Template](https://github.com/SEB-11-BH/MEN-AUTH-TEMPLATE.git) and clone the repository to your machine and rename the folder to your desired project name by running the following command in your terminal.
+**Planning Materials**
 
-**Be sure to replace `<YOUR-PROJECT-NAME>` with your desired project name!**:
+* GitHub: [Project plan](https://github.com/alizulfiqarbuksh/Game-review-discussion-blog/tree/main/Project_plan)
 
-```bash
-git clone https://github.com/SEB-11-BH/MEN-AUTH-TEMPLATE.git <YOUR-PROJECT-NAME>
-```
+**Users can:**
 
-Note by adding the `open-house` argument we're cloning the specified repo into a directory called `open-house` on our machines.
+* Read detailed game reviews
+* Share guides, strategies, or tips
+* Discuss posts through comments and interactions
 
-Next, `cd` into your renamed directory:
+# Attributions
 
-**Be sure to replace `<YOUR-PROJECT-NAME>` with your desired project name!**:
+**External resources and libraries used:**
 
-```bash
-cd <YOUR-PROJECT-NAME>
-```
+* Google Fonts – **Noto Serif**
+* Express.js
+* MongoDB
+* Multer
 
-Finally, remove the existing `.git` information from this template:
+# Technologies used
 
-```bash
-rm -rf .git
-```
+the technologies used to complete this project were: 
+* HTML
+* CSS
+* Javascript
+* Node.js, Express.js
+* MongoDB, Mongoose
+* Multer
+* Research resources such as **Google** and **YouTube**.
 
-> Removing the `.git` info is important as this is just a starter template provided by GA. You do not need the existing git history for this project.
+# Next steps
 
-## GitHub setup
+**Here are some exciting features that could be added in future updates:**
 
-To add this project to GitHub, initialize a new Git repository:
-
-```bash
-git init
-git add .
-git commit -m "init commit"
-```
-
-Make a new repository on [GitHub](https://github.com/) for your project.
-
-Link your local project to your remote GitHub repo:
-
-- use the second set of commands that appear on the empty repo to connect your local project to GitHub.
-
-> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
-
-Open the project's folder in your code editor:
-
-```bash
-code .
-```
-
-## Install dependencies
-
-Next, you will want to install all of the packages listed in `package.json`
-
-```bash
-npm i
-```
-
-## Create your .env
-
-Lastly, we want to create `MONGODB_URI` and `SESSION_SECRET` to hold values used in our auth logic.  `MONGODB_URI` will connect to your MongoDB Atlas connection string so you will need to establish one for this application.  `SESSION_SECRET` will aid in your auth session logic.
-
-Add a `.env` file to your application and add the following secret keys to your application:
-
-```text
-MONGODB_URI=
-SESSION_SECRET=
-```
-
-Start the server and you are ready for launch.
-
-```bash
-npm run dev
-```
-
-Happy Coding!
+* **Search & Filter** – Search posts by game, category, or author.
+* **User Profiles** – View all posts by a specific user.
+* **Post Categories & Tags** – Organize posts by game genre or tags.
+* **Notifications** – Notify users when their posts receive comments.
