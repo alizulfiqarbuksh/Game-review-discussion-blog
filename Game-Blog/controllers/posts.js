@@ -20,7 +20,11 @@ router.get('/', async (req, res) => {
 router.get('/new', async (req, res) => {
 
   try{
-    const dateTime = new Date().toISOString().slice(0, 16);
+    const now = new Date();
+    const date = now.toLocaleDateString('en-CA');
+    const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    const dateTime = `${date}T${time}`;
+
     res.render('posts/new.ejs', {dateTime});
   }
   catch(err) {
@@ -93,7 +97,10 @@ router.get('/:id/edit', async (req, res) => {
 
   try{
     const currentPost = await Post.findById(req.params.id).populate('author');
-    const dateTime = currentPost.createdAt.toISOString().slice(0, 16);
+    const now = new Date();
+    const date = now.toLocaleDateString('en-CA');
+    const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    const dateTime = `${date}T${time}`;
     res.render('posts/edit.ejs', {currentPost, dateTime});
   }
   catch(err) {

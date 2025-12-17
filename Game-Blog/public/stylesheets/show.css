@@ -1,0 +1,172 @@
+.post-page {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.post-card {
+  background-color: #020617;
+  color: #e5e7eb;
+  width: 900px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.post-header {
+  margin-bottom: 24px;
+}
+
+.post-title {
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+
+.post-meta {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.post-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.post-images img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.post-body {
+  line-height: 1.7;
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1e293b;
+  padding-top: 20px;
+}
+
+.likes-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.like-btn {
+  background-color: #38bdf8;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  background-color: #0ea5e9;
+}
+
+.like-btn.unlike {
+  background-color: #f87171;
+}
+
+.author-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.edit-btn {
+  background-color: #0ea5e9;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: #020617;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-btn a {
+  text-decoration: none;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comments-section {
+  width: 900px;
+  width: 100%;
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: solid 1px;
+}
+
+.comment-form button {
+  background-color: #38bdf8;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.comment-form button:hover {
+  background-color: #0ea5e9;
+}
+
+.comments-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment-card {
+  background-color: #0f172a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+.comment-text {
+  color: white;
+}
+
+.comment-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.small {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: white;
+}

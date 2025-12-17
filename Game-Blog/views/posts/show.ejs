@@ -10,80 +10,115 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/show.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
 
-  <h1><%= currentPost.title %></h1>
-  <% if (currentPost.images && currentPost.images.length) { %>
+  <div class="page-content post-page">
 
-    <div class="post-images">
-      <% currentPost.images.forEach(img => { %>
-        <img src="<%= img %>" alt="Post image" />
-      <% }) %>
-    </div>
+    <article class="post-card">
 
-  <% } %>
-  <p><%= currentPost.body %></p>
-  <p>Posted on: <%= formattedDate %> by <%= currentPost.author.username %></p>
+      <header class="post-header">
+        <h1 class="post-title"><%= currentPost.title %></h1>
+        <p class="post-meta">
+          Posted on <%= formattedDate %> · by <%= currentPost.author.username %>
+        </p>
+      </header>
 
-  <h2>Likes</h2>
-  <p>Liked by <%= currentPost.favoritedByUsers.length %> people.</p>
-
-  <% if(user && !userHasFavorited) { %>
-    <form action="/posts/<%= currentPost._id %>/favorited-by/<%= user._id %>" method="POST">
-      <button type="submit">Like post!</button>
-    </form>
-  <% }%>
-
-  <% if(userHasFavorited) { %>
-    <form action="/posts/<%= currentPost._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
-      <button type="submit">Unlike Post</button>
-    </form>
-  <% }%>
-
-  <% if (user && currentPost.author._id.toString() === user._id.toString()) { %>
-    <form action="/posts/<%= currentPost._id %>?_method=DELETE" method="POST">
-      <button type="submit">Delete Post</button>
-    </form>
-    <a href="/posts/<%= currentPost._id %>/edit">
-      <button>Update Post</button>
-    </a>
-  <% } %>
-
-  <% if(user) { %>
-    <form action="/posts/<%= currentPost._id %>/comments" method="POST">
-
-      <input type="hidden" name="commenter" value="<%= user._id %>">
-      
-      <label for="text">Comment: </label>
-      <textarea name="text" id="text" placeholder="Leave a comment ....." required></textarea>
-
-      <input type="hidden" name="createdAt" id="createdAt" value="<%= dateTime %>">
-
-      <button type="submit">Post comment</button>
-
-    </form>
-  <% } else {%>
-    <p><a href="/auth/sign-in">Sign in</a> to join the discussion</p>
-  <% } %>
-
-  <% currentPost.comments.forEach((comment) => { %>
-    <p><%= comment.commenter ? comment.commenter.username : 'Unknown' %> says: <%= comment.text %></p>
-
-    <% if (user && comment.commenter && comment.commenter._id.equals(user._id) || user && currentPost.author._id.equals(user._id)) { %>
-      <form action="/posts/<%= currentPost._id %>/comments/<%= comment._id %>/?_method=DELETE" method="POST">
-        <button type="submit">Delete comment</button>
-      </form>
-      
-      <% if(comment.commenter && comment.commenter._id.equals(user._id)) { %>
-        <a href="/posts/<%= currentPost._id %>/comments/<%= comment._id %>/edit">
-          <button>Update comment</button>
-        </a>
+      <% if (currentPost.images && currentPost.images.length) { %>
+        <div class="post-images">
+          <% currentPost.images.forEach(img => { %>
+            <img src="<%= img %>" alt="Post image" />
+          <% }) %>
+        </div>
       <% } %>
-    <% } %>
 
-  <% }) %>
+      <div class="post-body">
+        <p><%= currentPost.body %></p>
+      </div>
+
+      <div class="post-actions">
+
+        <div class="likes-section">
+          <p><%= currentPost.favoritedByUsers.length %> likes</p>
+
+          <% if(user && !userHasFavorited && currentPost.author._id.toString() !== user._id.toString()) { %>
+            <form action="/posts/<%= currentPost._id %>/favorited-by/<%= user._id %>" method="POST">
+              <button class="like-btn" type="submit">Like</button>
+            </form>
+          <% } %>
+
+          <% if(userHasFavorited) { %>
+            <form action="/posts/<%= currentPost._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+              <button class="like-btn unlike" type="submit">Unlike</button>
+            </form>
+          <% } %>
+        </div>
+
+        <% if (user && currentPost.author._id.toString() === user._id.toString()) { %>
+          <div class="author-actions">
+            <button class="edit-btn"><a href="/posts/<%= currentPost._id %>/edit">Edit</a></button>
+
+            <form action="/posts/<%= currentPost._id %>?_method=DELETE" method="POST">
+              <button class="delete-btn" type="submit">Delete</button>
+            </form>
+          </div>
+        <% } %>
+
+      </div>
+
+    </article>
+
+    <section class="comments-section">
+
+      <h2>Discussion</h2>
+
+      <% if(user) { %>
+        <form class="comment-form" action="/posts/<%= currentPost._id %>/comments" method="POST">
+          <input type="hidden" name="commenter" value="<%= user._id %>">
+          <input type="hidden" name="createdAt" value="<%= dateTime %>">
+
+          <textarea name="text" placeholder="Join the discussion..." required></textarea>
+          <button type="submit">Post comment</button>
+        </form>
+      <% } else { %>
+        <p class="sign-in-msg">
+          <a href="/auth/sign-in">Sign in</a> to join the discussion
+        </p>
+      <% } %>
+
+      <div class="comments-list">
+        <% currentPost.comments.forEach(comment => { %>
+
+          <div class="comment-card">
+            <p class="comment-author">
+              <%= comment.commenter ? comment.commenter.username : 'Unknown' %>
+            </p>
+            <p class="comment-text"><%= comment.text %></p>
+
+            <% if (user && (comment.commenter && comment.commenter._id.equals(user._id) || currentPost.author._id.equals(user._id))) { %>
+              <div class="comment-actions">
+                <form action="/posts/<%= currentPost._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                  <button class="delete-btn small">Delete</button>
+                </form>
+
+                <% if(comment.commenter && comment.commenter._id.equals(user._id)) { %>
+                  <button class="edit-btn small">
+                    <a href="/posts/<%= currentPost._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                  </button>
+                <% } %>
+              </div>
+            <% } %>
+
+          </div>
+
+        <% }) %>
+      </div>
+
+    </section>
+
+  </div>
 
 </body>
 </html>

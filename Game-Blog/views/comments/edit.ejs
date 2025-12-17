@@ -10,25 +10,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/new.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Edit Comment</h1>
 
-<form action="/posts/<%= currentPost._id %>/comments/<%= currentComment._id %>?_method=PUT" method="POST">
-  
-  <input type="hidden" name="commenter" value="<%= user._id %>">
-      
-  <label for="text">Comment: </label>
-  <textarea name="text" id="text" placeholder="Leave a comment ....." required><%= currentComment.text %></textarea>
+  <div class="page-content">
 
-  <input type="hidden" name="createdAt" id="createdAt" value="<%= dateTime %>">
+    <div class="create-page">
 
-  <button type="submit">Update comment</button>
+      <div class="create-left">
+        <div class="create-left-content">
+          <h1>Edit your comment</h1>
+          <p>Update your thoughts or fix a typo before others read it.</p>
+        </div>
+      </div>
 
-</form>
+      <div class="create-right">
+        <div class="form-container">
+          <h2>Edit Comment</h2>
+          <form action="/posts/<%= currentPost._id %>/comments/<%= currentComment._id %>?_method=PUT" method="POST">
+            
+            <input type="hidden" name="commenter" value="<%= user._id %>">
+            <input type="hidden" name="createdAt" value="<%= dateTime %>">
 
-<a href="/posts/<%= currentPost._id %>">Cancel</a>
+            <label for="text">Comment:</label>
+            <textarea name="text" id="text" required ><%= currentComment.text %></textarea>
 
+            <button type="submit">Update comment</button>
+
+          </form>
+
+          <a href="/posts/<%= currentPost._id %>" class="form-cancel">
+            Cancel
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </body>
 </html>
