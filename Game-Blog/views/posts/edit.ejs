@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update post</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Post</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/new.css">
 </head>
 <body>
+
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Update <%= currentPost.title %> post</h1>
 
-  <form action="/posts/<%= currentPost._id %>/?_method=PUT" method="POST" enctype="multipart/form-data">
+  <div class="page-content">
 
-    <label>Author: <%= user.username %></label>
+    <div class="create-page">
 
-    <label for="title">Title: </label>
-    <input type="text" id="title" name="title" value="<%= currentPost.title %>" required>
-
-    <label for="body">Body: </label>
-    <textarea name="body" id="body" required><%= currentPost.body %></textarea>
-
-    <label>Current Images:</label>
-    <% if (currentPost.images && currentPost.images.length) { %>
-      <div class="current-images">
-        <% currentPost.images.forEach(img => { %>
-          <img src="<%= img %>" width="120" alt="Post image" />
-        <% }) %>
+      <div class="create-left">
+        <div class="create-left-content">
+          <h1>Edit Your Post</h1>
+          <p>
+            Update your content, improve clarity, or add new images to keep
+            your post fresh and helpful for the community.
+          </p>
+        </div>
       </div>
-    <% } else { %>
-      <p>No images yet</p>
-    <% } %>
 
-    <label for="images">Add New Images:</label>
-    <input type="file" name="images" multiple />
+      <div class="create-right">
+        <div class="form-container">
+          <h2>Update Post</h2>
+          <form action="/posts/<%= currentPost._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
-    <label for="createdAt">Created at: </label>
-    <input type="datetime-local" name="createdAt" id="createdAt" value="<%= dateTime %>">
+            <label>Author: <%= user.username %></label>
 
-    <button type="submit">Update</button>
+            <label for="title">Post title:</label>
+            <input type="text" id="title" name="title" value="<%= currentPost.title %>" required/>
 
-  </form>
+            <label for="body">Post content:</label>
+            <textarea name="body" id="body" required><%= currentPost.body %></textarea>
+
+            <label for="images" class="file-upload">Add more images: (optional)</label>
+            <input type="file" name="images" multiple/>
+
+            <label for="createdAt">Publish date</label>
+            <input type="datetime-local" name="createdAt" id="createdAt" value="<%= dateTime %>"/>
+
+            <button type="submit">Update Post</button>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
 </body>
 </html>

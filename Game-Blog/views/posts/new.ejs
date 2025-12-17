@@ -10,29 +10,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/new.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Create a post</h1>
 
-  <form action="/posts" method="POST" enctype="multipart/form-data">
+  <div class="page-content">
 
-    <label for="author">Author: <%= user.username %></label>
+    <div class="create-page">
 
-    <label for="title">Title: </label>
-    <input type="text" id="title" name="title" required>
+      <div class="create-left">
+        <div class="create-left-content">
+          <h1>Create a New Post</h1>
+          <p>
+            Share your thoughts, strategies, and experiences with the community.
+            Write game reviews, post short guides, or start discussions that other
+            gamers can learn from and enjoy.
+          </p>
+        </div>
+      </div> 
 
-    <label for="body">Body: </label>
-    <textarea name="body" id="body" required></textarea>
+      <div class="create-right">
+        <div class="form-container">
+          <h2>Start Writing</h2>
+          <form action="/posts" method="POST" enctype="multipart/form-data">
 
-    <input type="file" name="images" multiple />
+            <label for="author">Author: <%= user.username %></label>
 
-    <label for="createdAt">Created at: </label>
-    <input type="datetime-local" name="createdAt" id="createdAt" value="<%= dateTime %>">
+            <label for="title">Post title:</label>
+            <input type="text" id="title" name="title" required placeholder="Enter title">
 
-    <button type="submit">Create</button>
+            <label for="body">Post content:</label>
+            <textarea name="body" id="body" required placeholder="Enter content"></textarea>
 
-  </form>
+            <label for="images" class="file-upload">Upload images: (optional)</label>
+            <input type="file" name="images" id="images" multiple />
+
+            <label for="createdAt">Publish date:</label>
+            <input type="datetime-local" name="createdAt" id="createdAt" value="<%= dateTime %>">
+
+            <button type="submit">Create</button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
 </body>
 </html>
